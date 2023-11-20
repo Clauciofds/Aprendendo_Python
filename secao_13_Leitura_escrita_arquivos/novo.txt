@@ -1,0 +1,3 @@
+Acrescentando conteúdo ao fim do arquivo texto.txt...
+
+FIM DO TEXTO
