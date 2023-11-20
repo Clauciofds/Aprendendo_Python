@@ -1,6 +1,13 @@
-OlÃ¡ mundo, tudo bem.
+A função seek movimenta o curso pelo conteúdo do arquivo
 
-Para ler um arquivo devemos usar a funÃ§Ã£o builtin open().
+Para ler um arquivo devemos usar a função builtin open().
 
-open -> forma simples passamos apenas um parÃ¢metro de entrada, ou seja, o nome do arquivo, que retorna um
-_io.TextIO@rapper que Ã© o objeto que trabalhamos.
+open -> forma simples passamos apenas um parâmetro de entrada, ou seja, o nome do arquivo, que retorna um
+_io.TextIO@rapper que é o objeto que trabalhamos.
+
+read -> usamos para ler o conteúdo de um arquivo aberto
+
+close -> IMPORTANTE que devemos fechar o arquivo após editarmos o arquivo
+         e se necessário verificar o status do arquivo com a função closed.
+         Quando o arquivo é aberto o sistema reconhece como um arquivo de streming que
+         está sendo edita por algum usuário ou operação.
