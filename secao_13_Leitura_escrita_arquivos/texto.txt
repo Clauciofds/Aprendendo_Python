@@ -1,0 +1,6 @@
+Olá mundo, tudo bem.
+
+Para ler um arquivo devemos usar a função builtin open().
+
+open -> forma simples passamos apenas um parâmetro de entrada, ou seja, o nome do arquivo, que retorna um
+_io.TextIO@rapper que é o objeto que trabalhamos.
