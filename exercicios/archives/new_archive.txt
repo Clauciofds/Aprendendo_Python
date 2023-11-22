@@ -1,0 +1,8 @@
+pencil
+book
+table
+notebook
+window
+people
+soap
+row

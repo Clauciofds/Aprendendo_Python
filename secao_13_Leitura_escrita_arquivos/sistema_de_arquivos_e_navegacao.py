@@ -46,11 +46,38 @@ print(os.getcwd())
 os.chdir(os.path.join(os.getcwd(), "templates", "bin"))
 print(os.getcwd())
 
+os.chdir(os.path.join(os.getcwd(), "..", "..", ".."))
+
 print(os.listdir())
 
-
-os.chdir(os.path.join(os.getcwd(), "..", "..",".."))
 print(os.getcwd())
 
-print(os.listdir())
-print(os.listdir()[0])
+# print(os.listdir())
+# print(os.listdir()[0])
+dir1 = os.listdir()[6]
+# print(type(dir1))
+# print(dir1)
+
+os.chdir(os.path.join(os.getcwd(), "modificado", "templates", "bin"))
+
+print(os.getcwd())
+
+# os.mkdir("sys")
+
+print(len(os.listdir()))
+
+print(os.listdir("C://"))
+
+scanner = os.scandir()
+
+print(list(os.scandir()))
+
+print(list(os.scandir())[0].is_dir())
+print(list(os.scandir())[0].inode())
+print(list(os.scandir())[0].is_file())
+print(list(os.scandir())[0].is_symlink())
+print(list(os.scandir())[0].name)
+print(list(os.scandir())[0].path)
+print(list(os.scandir())[0].stat())
+
+scanner.close()
