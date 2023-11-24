@@ -82,7 +82,7 @@ for elementos in lista2:
     soma += elementos
 print(soma)
 
-# Criando lista com variáveis e usando whilo/for
+# Criando lista com variáveis e usando while/for
 carrinho = []
 produto = ''
 

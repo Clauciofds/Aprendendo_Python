@@ -1,3 +1,7 @@
+"""
+Faça um program que receba do usuário um arquivo texto e mostre na tela quantas letras vagais possui o texto.
+"""
+
 with open("archives/exercice_S13_E1.txt", "r") as archive:
     consonant_vowel = archive.read()
     # vowel = vowel.split()

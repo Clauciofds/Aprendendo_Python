@@ -137,14 +137,16 @@ print(dic)
 
 # Forma n'ao usual de criação de dicionários
 
-dic = {}.fromkeys('a', 'b')
-print(dic)
-
-usuario = {}.fromkeys(['nome', 'pontos', 'email', 'profile'], 'desconhecido')
+# dic = {}.fromkeys('a', 'b')
+# print(dic)
+corpo = [("akjff;jf", "jsdjfs;", "qeree", "4565"), ("sdjkfs", "4654", 48498, 4546)]
+usuario = {}.fromkeys(['nome', 'pontos', 'email', 'profile'],
+                      corpo
+                      )
 print(usuario)
-
-veja = {}.fromkeys('teste', 'valor')
-print(veja)
-
-veja = {}.fromkeys(range(11), 'novo')
-print(veja)
+#
+# veja = {}.fromkeys('teste', 'valor')
+# print(veja)
+#
+# veja = {}.fromkeys(range(11), 'novo')
+# print(veja)

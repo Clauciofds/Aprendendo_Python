@@ -1,3 +1,9 @@
+"""
+Faça um programa que leia o conteúndo de um arquivo e crie um arquivo com o mesmo conteúdo, mas com todas as letras
+minúsculas convertidas em maiúsculas. Os nomes dos arquivos serão fornecido, via teclado, pelo usuário. A função que
+converte maiúscala para minúsculas é o lower(). Ela é aplicada em cada caractere da string.
+"""
+
 import os
 
 # with open("archives/exercice_S13_E1.txt", "r") as archive:
