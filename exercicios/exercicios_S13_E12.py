@@ -34,3 +34,7 @@ with open("archives/densidade_demografica.txt", "r") as file:
     for i in sorted(freq):
         if i in alphabet:
             print(f"Letter: {i} - Frequency: {freq[i]}")
+
+    print(f"Total character of text file: {file_size:,.0f}")
+    print(f"Sum of lines: {numbers_lines}")
+    print(f"Total sum words: {numbers_words}")
