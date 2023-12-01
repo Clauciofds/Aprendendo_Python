@@ -1,27 +1,36 @@
-def ler_string_do_teclado(vetor, tamanho_maximo):
-    i = 0  # Inicializa o índice do vetor
+import datetime
+import re
 
-    while i < tamanho_maximo:
-        char = input()  # Lê um caractere do teclado
+current_year = datetime.date.today().year
+def old_define(year_old, current_year):
+    older = current_year - year_old
+    if older < 18:
+        return f'menor de idade - {older}'
+    elif older > 18:
+        return f'maior de idade - {older}'
+    else:
+        return f'entrando na maior idade - {older}'
 
-        # Verifica se o caractere é Enter (tecla 'Enter' pressionada)
-        if not char:
-            break  # Sai do loop se Enter for pressionado
+def main():
+    with open('archives/database_years_old.txt', 'r') as file:
+        columns1, columns2 = file.readline().split()
+        file = file.read().splitlines()
+        file = tuple(file)
+        database = []
+        database1 = []
+        for line in file:
+            lines = re.sub(r'\s+', ' ', line)
+            database.append(lines)
 
-        vetor[i] = char[0]  # Armazena o caractere no vetor
-        i += 1  # Incrementa o índice
+        for i in database:
+            parts = i.rsplit(' ', 1)
+            database1.append(parts)
 
-        # Certifique-se de que o vetor termina com um caractere nulo
-        if i < tamanho_maximo:
-            vetor[i] = '\0'
+        for user in database1:
+            name, year_old_str = user
+            year_old = int(year_old_str)
+            majority = old_define(year_old, current_year)
+            print(f'{name:<30}: {year_old:>4} - {majority:>3} anos')
+main()
 
-    return vetor[:i]
 
-
-# Função de exemplo para ler uma string de até 50 caracteres
-tamanho_maximo = 50
-vetor = [''] * tamanho_maximo  # Inicializa o vetor com caracteres nulos
-ler_string_do_teclado(vetor, tamanho_maximo)
-
-# Imprime a string lida do teclado
-print("String lida:", ''.join(vetor))

@@ -1,13 +1,20 @@
 """
+Faça um programa que receba como entrada o ano corrente e o nome de dois arquivo: um de entrada e outro
+de saída. Cada linha do arquivo de entrada contém o nome de uma pessoa (ocupando 40 caracteres) e o seu
+ano de nascimento. O programa deverá ler o arquivo de entrada e gerar um arquivo de saída onde aparece
+o nome da pessoa seguida por um stringque representa a sua idade.
 
+> Se a idade for menor do que 18 anos, escreva "menor de idade".
+> Se a idade for maior que 18 anos, escreva "maior de idade"
+> Se a idade for igual a 18 anos, escreva "entrando na maior idade"
 
 """
 
-import datetime, os, csv
+import datetime, os, re
 
 # Define a month and year current
-month_year_current = datetime.date.today().strftime("%Y")
-int_year = int(month_year_current)
+current_year = datetime.date.today().year
+
 
 # Defeni Database empty
 database = []
@@ -19,7 +26,7 @@ while db_size is None:
     except ValueError as err:
         print(f"{err} - Digite um número inteiro")
 
-def input_db(name, year_birth):
+def input_db():
     # Define database size
     for i in range(db_size):
         # Entering the user's name and year of birth
@@ -42,14 +49,12 @@ def input_db(name, year_birth):
 
     # print(type(database["year_bith"]))
     majority_define(database)
-    majority_define_read(database)
-
-
+    main()
 
 def majority_define(database):
 
     # Filter individuals who are 18 years older
-    adults = list(filter(lambda data: (int_year - data["year_birth"]) > 18, database))
+    adults = list(filter(lambda data: (current_year - data["year_birth"]) > 18, database))
 
     # Print the result:
     for adult in adults:
@@ -62,42 +67,37 @@ def majority_define(database):
             header = f"{'Nome':<40} {'Ano Nascimento':<15} {'Idade'}\n"
             file.write(header)
         for adult in adults:
-            adults_list = (f'{adult["name"]:<40} {adult["year_birth"]:<15} {(int_year - adult["year_birth"]):^2}\n')
+            adults_list = (f'{adult["name"]:<40} {adult["year_birth"]:<15} {(current_year - adult["year_birth"]):^2}\n')
             file.write(adults_list)
 
-def majority_define_read(database):
-    with open("archives/database_years_old.txt", "r") as file:
-        dict_keys = file.readline().split()
-        print(dict_keys)
-        contents = file.readlines()
-        contents.pop()
-        print(contents)
+def old_define(year_old, current_year):
+    older = current_year - year_old
+    if older < 18:
+        return f'menor de idade - {older}'
+    elif older > 18:
+        return f'maior de idade - {older}'
+    else:
+        return f'entrando na maior idade - {older}'
+
+def main():
+    with open('archives/database_years_old.txt', 'r') as file:
+        columns1, columns2 = file.readline().split()
+        file = file.read().splitlines()
+        file = tuple(file)
         database = []
-        for line in contents:
-            values = line.split()
-            database_inf = dict(dict_keys, values)
-            database.append(database_inf)
+        database1 = []
+        for line in file:
+            lines = re.sub(r'\s+', ' ', line)
+            database.append(lines)
 
-    # Convert the year of birth to integers for comparison if necessary
-    # database_int = [{"name": data["name"], "year": int(data["year"])} for data in database]
+        for i in database:
+            parts = i.rsplit(' ', 1)
+            database1.append(parts)
 
-    print(database)
+        for user in database1:
+            name, year_old_str = user
+            year_old = int(year_old_str)
+            majority = old_define(year_old, current_year)
+            print(f'{name:<30}: {year_old:>4} - {majority:>3} anos')
 
-
-
-
-input_db(name="", year_birth="")
-
-
-
-def majority_define_read(database):
-    with open("archives/database_years_old.txt", "r") as file:
-        dict_keys = file.readline().split()
-        contents = file.read().split("\n")
-        contents.pop()  # Remove last empty line
-        database = []
-        for line in contents:
-            values = line.split()
-            database_inf = dict(zip(dict_keys, values))
-            database.append(database_inf)
-    return database
+input_db()

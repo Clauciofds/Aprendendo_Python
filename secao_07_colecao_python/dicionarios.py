@@ -139,10 +139,8 @@ print(dic)
 
 # dic = {}.fromkeys('a', 'b')
 # print(dic)
-corpo = [("akjff;jf", "jsdjfs;", "qeree", "4565"), ("sdjkfs", "4654", 48498, 4546)]
-usuario = {}.fromkeys(['nome', 'pontos', 'email', 'profile'],
-                      corpo
-                      )
+corpo = ["sdjkfs", "4654", 48498, 4546]
+usuario = {}.fromkeys(['nome', 'pontos', 'email', 'profile'], corpo)
 print(usuario)
 #
 # veja = {}.fromkeys('teste', 'valor')

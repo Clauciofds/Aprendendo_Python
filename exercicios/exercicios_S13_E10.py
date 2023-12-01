@@ -54,4 +54,7 @@ with open("densidade_demografica.txt", "r") as archive:
 
 
 with open(output_archive, "r") as archive:
+    -*- coding: utf-8 -*-
     print(f"\n{archive.read()}")
+
+
