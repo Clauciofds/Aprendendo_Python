@@ -1,36 +1,31 @@
-data = """name                                     year
-Vicente Rodrigues dos Santos             1949
-Nicolas Santos                           2010
-Suzana Rodrigues                         1952
-Heloisa Toledo                           2009
-Herbet Toledo                            1995
-Nicole Toledo                            2015
-Willian Rodrigues                        1982
-Fabiana Santos                           2016
-Maria Bombi                              1951
-Marcelo Roncolato                        1979
-"""
+from datetime import datetime
+import re
 
-# Dividir o texto em linhas e remover linhas em branco
-lines = [line for line in data.split('\n') if line.strip()]
 
-# Obter os títulos das colunas
-columns = lines[0].split()
+def read_data():
+    # Create an empty list
+    contacts = []
 
-# Inicializar o dicionário
-result_dict = {columns[0]: [], columns[1]: []}
+    # Read binary file and append in contacts[]
+    with open('archives/contatos.bin', 'rb') as file:
+        data = file.readlines()
+        for i in data:
+            contents_raw = i.decode("utf-8").split(" - ")
+            contacts.append(contents_raw)
 
-# Preencher o dicionário com os dados
-for line in lines[1:]:
-    values = line.split()
-    result_dict[columns[0]].append(" ".join(values[:-1]))
-    result_dict[columns[1]].append(int(values[-1]))
+        # Remove the caracters "\r\n"
+        contacts = [[item[0], item[1], item[2].strip("\r\n")] for item in contacts]
 
-# Exibir o dicionário resultante
-print(result_dict)
+    return contacts
 
-print(result_dict["name"][0])
 
-print("Vicente Rodrigues dos Santos" in result_dict["name"])
+def insert_contact():
+    name = input("Name: ")
+    phone_number = input("Cellphone number: ")
+    while open("archives/contatos.bin", "ab") as file:
 
-print(result_dict['year'])
+
+
+# Chamar a função
+contacts_data = read_data()
+print(contacts_data)
