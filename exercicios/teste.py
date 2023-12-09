@@ -1,31 +1,26 @@
-from datetime import datetime
-import re
+lista = [['Maria Silva', '(11) 98765-4321', '15 de março'], ['João Santos', '(21) 98765-1234', '22 de julho'],
+ ['Ana Oliveira', '(31) 97654-3210', '10 de janeiro'], ['Lucas Pereira', '(41) 96543-2109', '5 de setembro'],
+ ['Juliana Costa', '(51) 95432-1098', '18 de abril'], ['Rafael Lima', '(61) 94321-0987', '7 de junho'],
+ ['Camila Souza', '(71) 93210-8765', '20 de outubro'], ['Thiago Oliveira', '(81) 92109-8765', '12 de fevereiro'],
+ ['Larissa Santos', '(91) 91087-6543', '25 de agosto'], ['Felipe Rocha', '(01) 98765-4321', '30 de dezembro'],
+ ['Bruna Costa', '(02) 98765-1234', '3 de julho'], ['André Pereira', '(03) 97654-3210', '14 de maio'],
+ ['Letícia Lima', '(04) 96543-2109', '8 de novembro'], ['Gustavo Oliveira', '(05) 95432-1098', '11 de setembro'],
+ ['Vanessa Santos', '(06) 94321-0987', '19 de janeiro'], ['Pedro Souza', '(07) 93210-8765', '23 de março'],
+ ['Carolina Silva', '(08) 92109-8765', '9 de agosto'], ['Gabriel Rocha', '(09) 91087-6543', '2 de abril'],
+ ['Amanda Costa', '(10) 98765-4321', '17 de junho'], ['Bruno Lima', '(11) 98765-1234', '1 de outubro']
+ ]
 
+info_to_search = input("Search: ").lower()
 
-def read_data():
-    # Create an empty list
-    contacts = []
+found_contacts = []
 
-    # Read binary file and append in contacts[]
-    with open('archives/contatos.bin', 'rb') as file:
-        data = file.readlines()
-        for i in data:
-            contents_raw = i.decode("utf-8").split(" - ")
-            contacts.append(contents_raw)
+for contact in lista:
+    for item in contact:
+        if item.lower().find(info_to_search) != -1:
+            found_contacts.append(contact)
+            print(contact[1][1:3])
 
-        # Remove the caracters "\r\n"
-        contacts = [[item[0], item[1], item[2].strip("\r\n")] for item in contacts]
+if found_contacts:
+    for contact in found_contacts:
+        print(f'{contact[0]} - {contact[1]} - {contact[2]}')
 
-    return contacts
-
-
-def insert_contact():
-    name = input("Name: ")
-    phone_number = input("Cellphone number: ")
-    while open("archives/contatos.bin", "ab") as file:
-
-
-
-# Chamar a função
-contacts_data = read_data()
-print(contacts_data)
