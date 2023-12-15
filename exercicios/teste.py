@@ -12,15 +12,17 @@ lista = [['Maria Silva', '(11) 98765-4321', '15 de março'], ['João Santos', '(
 
 info_to_search = input("Search: ").lower()
 
-found_contacts = []
+list_to_names = []
+print(lista[0][0][0].lower())
 
-for contact in lista:
-    for item in contact:
-        if item.lower().find(info_to_search) != -1:
-            found_contacts.append(contact)
-            print(contact[1][1:3])
+for word in lista:
+    if info_to_search == word[0][0][0].lower():
+        print(word)
+        print(lista[0])
+        list_to_names.append(word)
+        list_to_names = sorted(list_to_names)
 
-if found_contacts:
-    for contact in found_contacts:
+if list_to_names:
+    for contact in list_to_names:
         print(f'{contact[0]} - {contact[1]} - {contact[2]}')
 

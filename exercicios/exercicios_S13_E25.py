@@ -14,7 +14,6 @@ iniciar, os contatos devem ser inicializado com os dados contidos neste arquivo 
 """
 
 import os
-from datetime import datetime
 
 os.chdir(os.path.join("archives"))
 
@@ -131,7 +130,7 @@ def search_contact(contacts):
         if found_contacts:
             print(f"\nContact found: ")
             for contact in found_contacts:
-                print(f"Name: {contact[0]} - Phonecell: {contact[1]} - Birthday: {contact[2]}")
+                print(f"Name: {contact[0]:<20} - Phonecell: {contact[1]} - Birthday: {contact[2]}")
 
             # Option for the new search.
             continue_search = input("\nDo you continue search (Y/N): ")
@@ -147,9 +146,106 @@ def search_contact(contacts):
             break
 
 
-def main():
-    search_contact(contacts="")
+def sorted_list_contacts(contacts):
+    # Read contatos.bin raw
+    contacts_list = read_data(contacts)
 
+    # Sort the contact list by name (first column)
+    sorted_list = sorted(contacts_list, key=lambda contact: contact[0])
+
+    # Print the ordered list
+    for contact in sorted_list:
+        print(f"{contact[0]:<20} - {contact[1]} - {contact[2]}")
+
+
+
+def search_birthday (contacts):
+    # Save contacts list with variably
+    list_of_contacts = read_data(contacts)
+
+    # Create contact check list
+    birth_month = {
+        "1": "Janeiro", "2": "Fevereiro", "3": "Março", "4": "Abril", "5": "Maio", "6": "Junho", "7": "Julho",
+        "8": "Agosto", "9": "Setembro", "10": "Outubro", "11": "Novembro", "12": "Dezembro"
+    }
+
+    # Create an empty list to store found data(s)
+    contacts_found = []
+
+    while True:
+        while True:
+            # Enter Birthday Month
+            month_to_search = input("Birthday Month number: ").lower()
+
+            # Create condition for look for only months
+            months = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
+
+            if month_to_search in months:
+                break
+            else:
+                print("Invalid value!")
+
+
+        # The loop searches for the item in the sublists of the list.
+        for contact in list_of_contacts:
+            if birth_month[month_to_search].lower() in contact[2].lower():
+                contacts_found.append(contact)
+
+        if contacts_found:
+            print("List is complet")
+
+            # Printed contacts found
+            for contact in contacts_found:
+                print(f"{contact[0]:<20} - {contact[1]} - {contact[2]}")
+        else:
+            print(f"\nBirthday contact not found!!!")
+
+        new_search = input("\nDo you like a new search: (Y/N): ").lower()
+        if new_search != "y":
+            break
+
+
+def search_name(contacts):
+    # Read contact list complete
+    names_to_search = read_data(contacts)
+
+    # Create the empty list to save names
+    list_to_names = []
+
+    # Create loops to search for user-determined names
+    while True:
+        while True:
+            word_to_search = input("First name word to search: ").lower()
+            if len(word_to_search) <= 1 and word_to_search != int():
+                break
+            else:
+                print("Incorrect value!!!")
+
+        for word in names_to_search:
+            if word_to_search == word[0][0].lower():
+                list_to_names.append(word)
+                list_to_names = sorted(list_to_names)
+
+        if list_to_names:
+            print("\nName(s) localized.\n")
+
+            for i in list_to_names:
+                print(f"{i[0]:<20} - {i[1]} - {i[2]}")
+        else:
+            print(f"\nNo name has {word_to_search} with the first letter!!")
+
+        new_search = input("\nDo you want a new search? ").lower()
+        if new_search != "y":
+            break
+
+
+
+
+def main():
+    # search_contact(contacts="")
+    # sorted_list_contacts(contacts="")
+    # search_birthday(contacts=0)
+    search_name(contacts=0)
 
 
 if __name__ == "__main__":

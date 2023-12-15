@@ -31,15 +31,35 @@ print(next(gen))
 
 """
 
-# EXEMPLO:
-def conta_ate(valor_maximo):
-    contador = 1
-    while contador <= valor_maximo:
-        yield contador
-        contador += 1
+from colorama import Fore
+import string  # Importar string para gerar o alfabéto
+s
 
-gen = conta_ate(10)
+# EXEMPLO:
+# Uma Generator Function não é um Generator. Ela gera um generator.
+def conta_ate(valor_maximo):
+    _ = 0
+    while _ <= valor_maximo:
+        yield _
+        _ += 1
+
+gen = list(conta_ate(6))
+
+print(gen)
+
+print("Claucio")
 
 for num in gen:
-    print(num)
-    
+    print(num, end=' ')
+
+print(f"\n{Fore.LIGHTBLUE_EX}")
+
+def alfabeto(valor_maximo):
+    _ = 'a'  #Letra inicial do alfabeto
+    while _ <= valor_maximo:
+        yield _
+        _ = chr(ord(_) + 1)
+
+gen = list(alfabeto('f'))
+
+print(gen)

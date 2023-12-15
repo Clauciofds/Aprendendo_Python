@@ -7,7 +7,7 @@ ler o arquivo de entrada e gerar um arquivo de saída onde aparece o nome do alu
 import os
 import re
 
-os.chdir(os.path.join("exercicios\\archives"))
+os.chdir(os.path.join("archives"))
 
 def input_file_name():
     # Create an input file name
