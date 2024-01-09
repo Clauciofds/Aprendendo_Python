@@ -27,11 +27,14 @@ class Motorcycle:
         self.__gear = gear
 
     # 2ª ETAPA
-    @property
-    def set_gear(self):
+    def get_gears(self):
         # Creating a six-speed gearbox
         gears = ['Neutral', 'First gear', 'Second gear', 'Third gear', 'Fourth gear', 'Fifth gear', 'Sixth gear']
-        return gears, self.__gear
+        return gears
+
+    @property
+    def set_gear(self):
+        return self.__gear
 
     @set_gear.setter
     def set_gear (self, new_value):
@@ -48,30 +51,11 @@ class Motorcycle:
             else:
                 print(f'\n{Fore.LIGHTRED_EX}Neutral gearbox{Fore.RESET}')
 
-    def get_gears(self):
-        # Creating a six-speed gearbox
-        gears = ['Neutral', 'First gear', 'Second gear', 'Third gear', 'Fourth gear', 'Fifth gear', 'Sixth gear']
-        return gears
-
-    def set_up_shift_gear(self):
-        if 0 <= self.__gear < 6:
-            self.__gear += 1
-            print(f'Gear engaged: {self.get_gears()[self.__gear]}')
-        else:
-            print('Sixth gear engaged!!!')
-
-    def set_down_shift_gear(self):
-        if 6 >= self.__gear > 0:
-            self.__gear -= 1
-            print(f'Gear engaged: {self.get_gears()[self.__gear]}')
-        else:
-            print('Neutral gearbox')
-
     def view_info(self, gears=None):
         # Creating a six-speed gearbox
         gears = ['Neutral', 'First gear', 'Second gear', 'Third gear', 'Fourth gear', 'Fifth gear', 'Sixth gear']
 
-        print('\n* Your Motorcycle *\n')
+        print(f'{4*"*"}  Your Motorcycle  {4*"*"}\n')
         print(
             f'Manufacturer: {self.__manufacturer}\n'
             f'Model: {self.__model}\n'
@@ -107,53 +91,18 @@ def main():
                 ).lower()
                 if contin == 'n':
                     break
-            else:
+            elif change_gear == 1:
                 purchase_order.set_gear = change_gear
                 contin = input(
                     'Will it continue (Y/N) ?'
                 ).lower()
                 if contin == 'n':
                     break
+            else:
+                print(f'\n{Fore.LIGHTBLUE_EX}Pull the clutch!!!`{Fore.RESET}')
         except ValueError as err:
             print(f'Pull the clutch!!! {err}')
 
 
 if __name__ == '__main__':
     main()
-
-
-    """
-    while True:
-        change_gear = input(
-            '\nChange gear...\n'
-            '0 for down gear.\n'
-            '1 for up gear.\n'
-            '... '
-        )
-
-        if change_gear == '0':
-            purchase_order.set_down_shift_gear()
-            contin = input(
-                'Will it continue (Y/N) ?'
-            ).lower()
-            if contin == 'n':
-                break
-        else:
-            purchase_order.set_up_shift_gear()
-            contin = input(
-                'Will it continue (Y/N) ?'
-            ).lower()
-            if contin == 'n':
-                break
-
-
-    @property
-    def set_gear(self):
-        return self.__gear
-
-    @ set_gear.setter
-    def set_gear(self, change_gear):
-        # Creating a six-speed gearbox
-        gears = ['Neutral', 'First gear', 'Second gear', 'Third gear', 'Fourth gear', 'Fifth gear', 'Sixth gear']
-        self.__gear = change_gear
-    """
