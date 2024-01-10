@@ -1,4 +1,4 @@
-from colorama import Fore
+from colorama import Fore, Back
 
 
 class Motorcycle:
@@ -18,6 +18,15 @@ class Motorcycle:
      onde, os métodos deverão deverão fazer uma troca de cada vez para cima ou para baixo,
      verificando se as marchas estão no minímo Neutro ou na mais alto, sexta marcha. E os
      métodos dever imprimir em que marcha a moto está engatada.
+
+     3ª ETAPA
+     Baseado-se no exercício 13 adicione o atributo ligada que terá a função de indicar
+     se a moto está ligada ou não. Este atributo deverá ser do tipo boleano. O método imprimir
+     deve ser modificado de forma a mostrar na tela valores de todos os atributos.
+
+     4ª ETAPA
+     Adicione os métodos ligar e desligar que deverão mudar o conteúdo do atributo ligada conforme
+     o caso
     """
 
     def __init__(self,manufacturer, model, predominant_color, gear):
@@ -25,12 +34,25 @@ class Motorcycle:
         self.__model = model
         self.__predominant_color = predominant_color
         self.__gear = gear
+        self.__turn_on = False  # 3ª ETAPA
 
     # 2ª ETAPA
     def get_gears(self):
         # Creating a six-speed gearbox
         gears = ['Neutral', 'First gear', 'Second gear', 'Third gear', 'Fourth gear', 'Fifth gear', 'Sixth gear']
         return gears
+
+
+    @property
+    def enginer_status(self):     # 3ª ETAPA INICIO
+        return self.__turn_on
+
+    @enginer_status.setter
+    def enginer_status(self, key_position):
+        if key_position == 1:
+            self.__turn_on = True
+        else:
+            self.__turn_on = False  # 3ª ETAPA FIM
 
     @property
     def set_gear(self):
@@ -55,12 +77,16 @@ class Motorcycle:
         # Creating a six-speed gearbox
         gears = ['Neutral', 'First gear', 'Second gear', 'Third gear', 'Fourth gear', 'Fifth gear', 'Sixth gear']
 
+        if self.__turn_on is False:
+            engine = "tourn off"
+
         print(f'{4*"*"}  Your Motorcycle  {4*"*"}\n')
         print(
-            f'Manufacturer: {self.__manufacturer}\n'
+            f'Manufacturer: {Back.LIGHTWHITE_EX}{Fore.BLACK} {self.__manufacturer} {Fore.RESET}{Back.RESET}\n'
             f'Model: {self.__model}\n'
             f'Predominant color: {self.__predominant_color}\n'
-            f'Gear engaged: {gears[self.__gear]}'
+            f'Gear engaged: {gears[self.__gear]}\n'
+            f'Motorcycle is {engine}'  # 3ª ETAPA
         )
 
 
