@@ -13,7 +13,7 @@ print(type(num))
 print(num)
 
 # Peça ao usuário digitar três números inteiros
-num1 = int(input('\nDigite três valores inteiros: '))
+num1: int = int(input('\nDigite três valores inteiros: '))
 num2 = int(input('Digite três valores inteiros: '))
 num3 = int(input('Digite três valores inteiros: '))
 print(f'A soma é: {sum([num1, num2, num3])}')

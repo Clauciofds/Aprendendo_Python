@@ -36,3 +36,4 @@ if media_ponderada >= 60.0:
     print(f'\nA média ponderada é: {media_ponderada:.2f} \U0001F44D\nO aluno(a) está aprovado')
 else:
     print(f'\nA média do aluno é: {media_ponderada:.2f} \U0001F44E\nO aluno(a) está reprovada')
+    
